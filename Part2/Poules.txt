@@ -1,0 +1,22 @@
+{
+    "Poule_Name": "A",
+    "Equipes": []
+}{
+    "Poule_Name": "B",
+    "Equipes": []
+}{
+    "Poule_Name": "C",
+    "Equipes": []
+}{
+    "Poule_Name": "D",
+    "Equipes": []
+}{
+    "Poule_Name": "E",
+    "Equipes": []
+}{
+    "Poule_Name": "F",
+    "Equipes": []
+}{
+    "Poule_Name": "G",
+    "Equipes": []
+}
