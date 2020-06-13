@@ -1,4 +1,6 @@
+#imports
 from random import randint
+#Equipe Class
 class Equipe():
     def __init__(self,Nom,NB_Match,Total_Point,NB_Victoir,NB_Defait,NB_Match_Null,But_Marque,But_Concede):
         self.Nom=Nom
@@ -9,44 +11,46 @@ class Equipe():
         self.NB_Match_Null=NB_Match_Null
         self.But_Marque=But_Marque
         self.But_Concede=But_Concede
-    
+      #affichage Function
     def Affichage(self):
         print(self.__dict__)
-
+ #calcul point Function
     def Calcul_Point(self):
           self.Total_Point +=(self.NB_Victoir*3)+self.NB_Match_Null+(self.NB_Defait*0)
           return self.Total_Point
     
+    #goal average(moyenne) Function
     def Goal_Average(self):
         return self.But_Marque-self.But_Concede
-
+#Poule Class
 class Poule():
     def __init__(self,Poule_Name):
         self.Poule_Name=Poule_Name
         self.Equipes=list()
-
+ #affichage Function
     def Afficher(self):        
         print('Poule Name :%s' % self.Poule_Name) 
         [Equipe.Affichage() for Equipe in self.Equipes]
-        
+
+       #ajout equipe Function  
     def Ajouter_Equipe(self,obj):
         if (len(self.Equipes)>3):
             print("__ limite exited __")
             pass
         else:
             self.Equipes.append(obj)#dynamic maping
-    
+     #supprimer Function
     def Supprimer_Equipe(self,nom):
         for _,Equipe in enumerate(self.Equipes):
             if Equipe.__dict__['Nom']==nom:
                 del self.Equipes[_]
-
+  #Somme des butes Function
     def Total_Buts_Marque(self):
         return sum([_.__dict__['But_Marque'] for _ in self.Equipes])
     
-    #shit needs to change
+   #qualifier une equipe Function
     def Qualification(self):
-            #there is somthong needs to fix about random choise
+           
             [print(e.Calcul_Point()) for e in self.Equipes]
             tirage=[e.Total_Point for e in self.Equipes]
             avg=[e.Goal_Average() for e in self.Equipes]

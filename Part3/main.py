@@ -1,16 +1,17 @@
+#imports
 from Tournoi import *
 import sqlite3
 import json
-
+#Establish Connection
 conn=sqlite3.connect('Poules.db')
 cursor=conn.cursor()
-pols=[Poule(chr(_).capitalize()) for _ in range(97,105)]
-
+pouless=[Poule(chr(_).capitalize()) for _ in range(97,105)]
+#cerer Poules function
 def cree_Poules():
-
-    pol=input('Select poules pour remplire: A/H').capitalize()
-    for p in pols :
-        if( p.Poule_Name==pol):
+  
+    poule=input('Select poules pour remplire: A/H').capitalize()
+    for p in poules :
+        if( p.Poule_Name==poule):
             try:
                 cursor.execute('''
                 CREATE  TABLE Poules_{}(  
@@ -56,10 +57,10 @@ def cree_Poules():
             conn.commit()
 
             
-
+#tree function
 def tree_poules():
 
-    for p in pols:   
+    for p in poules:   
         try:
              conn.execute("REPLACE  INTO Poules_{} SELECT * FROM Poules_{}  ORDER BY Total_Point DESC".format(p.Poule_Name,p.Poule_Name,p.Poule_Name))#NICE SHIT sort fe data base
         except Exception as e:
@@ -85,7 +86,7 @@ while (True):
             tree_poules()
 
         elif(choix==3):
-                for p in pols:
+                for p in poules:
                     print('Table Poules_{}'.format(p.Poule_Name)) 
                     try: 
                         for row in conn.execute('Select * from Poules_{}'.format(p.Poule_Name)):
